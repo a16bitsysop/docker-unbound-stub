@@ -33,11 +33,11 @@ SPOOFNAMES = names to set spoof names to SPOOFIP, sets reverse lookup as well
 ##local fowarding over ssl dns resolver with prefetch and other options
 
 ```
-docker container run -p 53:53/udp --env FORWARD=one --env PREFETCH=yes --env STUBIP=192.168.0.1 --env NTPIP=192.168.0.2 --env NTPNAMES="ntp.voip.net ntp.another.com" --env SPOOFIP=192.168.88.2 --env SPOOFNAMES="mail.example.com another.service.com" --name unbound-forward -d a16bitsysop/unbound-stub
+docker container run -p 53:53/udp --env FORWARD=one --env PREFETCH=yes --env STUBIP=192.168.0.1 --env NTPIP=192.168.0.2 --env NTPNAMES="ntp.voip.net ntp.another.com" --env SPOOFIP=192.168.88.2 --env SPOOFNAMES="mail.example.com another.service.com" --restart unless-stopped --name unbound-forward -d a16bitsysop/unbound-stub
 ```
 
 ##container authorative dns (no ports exposed outside container network)
 
 ```
-docker container run --net MYNET --env STUBIP=192.168.88.1 --name unbound-root -d a16bitsysop/unbound-stub
+docker container run --net MYNET --env STUBIP=192.168.88.1 --restart unless-stopped --name unbound-root -d a16bitsysop/unbound-stub
 ```
