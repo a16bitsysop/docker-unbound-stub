@@ -3,7 +3,7 @@ Dockerfile and scripts to create an unbound image that can be configured with en
 
 Environment  variables used:
 
-CPORT = port unbound listens on inside container
+CPORT = port unbound listens on inside container (unbound default 53)
 
 FORWARD = configure unbound to forward requests can be: 
 "quad9" for 9.9.9.9 , "google" for 8.8.8.8 , any other value uses 1.1.1.1 
@@ -14,7 +14,7 @@ If unset unbound is configured as an authorarive server that queries root server
 PREFETCH = If set then prefetch is set in config so unbound keeps common requests fresh
 
 STUBIP = IP of DNS server for local requests eg dnsmasq or mikrotik/openwrt router etc,
-If unset no stub zone is configured
+the stub domain is read from resolv.conf. If STUBIP is unset no stub zone is configured
 
 STUBPORT = port STUBIP is listening on (Defaults to 53 if unset)
 
@@ -29,3 +29,9 @@ eg. "ntp.VOIP.com another.remotentp.com"
 SPOOFIP = IP to use for SPOOFNAMES
 
 SPOOFNAMES = names to set spoof names to SPOOFIP, sets reverse lookup as well
+
+#local fowarding over ssl dns resolver with prefetch and other options
+docker container run -p 53:53/udp --env FORWARD=one --env PREFETCH=yes --env STUBIP=192.168.0.1 --env NTPIP=192.168.0.2 --env NTPNAMES="ntp.voip.net ntp.another.com" --env SPOOFIP=192.168.88.2 --env SPOOFNAMES="mail.example.com another.service.com" --name unbound-stub -d a16bitsysop/unbound-stub
+#container authorative dns (no ports exposed outside container network)
+docker container run --net MYNET --env STUBIP=192.168.88.1 --name unbound-stub -d a16bitsysop/unbound-stub
+

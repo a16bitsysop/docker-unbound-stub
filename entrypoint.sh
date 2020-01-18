@@ -10,7 +10,7 @@ echo '$STUBMASK=' $STUBMASK
 echo '$NTPIP=' $NTPIP
 echo '$NTPNAMES=' $NTPNAMES
 echo '$SPOOFIP=' $SPOOFIP
-echo '$SPOOFNAMES=' $SPOOFNAMES'
+echo '$SPOOFNAMES=' $SPOOFNAMES
 echo
 cd /etc/unbound/unbound.conf.d
 
@@ -43,7 +43,7 @@ else
   name: \".\"
   forward-ssl-upstream: yes
   forward-addr: $DNS1@853
-  forward-addr: $DNS2@853" | tee -a auto.conf > /dev/null
+  forward-addr: $DNS2@853" >> auto.conf
 fi
 
 if [ -n "$STUBIP" ]
@@ -87,30 +87,33 @@ stub-zone:
 " > stub.conf
 fi
 
-if [ -n $NTPIP ]
+if [ -n "$NTPIP" ]
 then
   echo "server:
   local-data: \"time.windows.com. IN A $NTPIP\"
   local-data: \"time.apple.com. IN A $NTPIP\"
   local-data: \"time.euro.apple.com. IN A $NTPIP\"
-  local-data: \"time.asia.apple.com. IN A $NTPIP\"" > ntp-spoof.conf
-  if [ -n $NTPNAMES ]
+  local-data: \"time.asia.apple.com. IN A $NTPIP\"
+" > ntp-spoof.conf
+  if [ -n "$NTPNAMES" ]
   then
-    for name in $NTPNAMES; do
+    for name in ""$NTPNAMES""; do
       echo "local-data: \"$name. IN A $NTPIP\"" >> ntp-spoof.conf
     done
+  fi
 fi
 
-if [ -n $SPOOFIP ] && [ -n $SPOOFNAMES ]
+if [ -n "$SPOOFIP" ] && [ -n "$SPOOFNAMES" ]
 then
  REVSPOOFIP=$(echo $SPOOFIP | awk -F. '{print $4"."$3"."$2"."$1}')
-  echo "server:" > spoof.conf
-  if [ -n $SPOOFNAMES ]
+  if [ -n "$SPOOFNAMES" ]
   then
-    for name in $SPOOFNAMES; do
+    echo "server:" > spoof.conf
+    for name in ""$SPOOFNAMES""; do
       echo "  local-data: \"$name. IN A $SPOOFIP\"
   local-data: \"$REVSPOOFIP.in-addr.arpa. IN PTR $name.\"" >> spoof.conf
     done
+  fi
 fi
 
 cd /etc/unbound
