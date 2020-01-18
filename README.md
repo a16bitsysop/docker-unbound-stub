@@ -6,9 +6,8 @@ Environment  variables used:
 CPORT = port unbound listens on inside container
 
 FORWARD = configure unbound to forward requests can be: 
-"quad9" for 9.9.9.9 and secondary
-"google" for 8.8.8.8 and secondary
-or any other value uses 1.1.1.1 and secondary
+"quad9" for 9.9.9.9 , "google" for 8.8.8.8 , any other value uses 1.1.1.1 
+secondary DNS is set for each as well.
 
 If unset unbound is configured as an authorarive server that queries root servers itself
 
@@ -28,4 +27,5 @@ NTPNAMES = extra ntp server names to set spoof names to with NTPIP
 eg. "ntp.VOIP.com another.remotentp.com"
 
 SPOOFIP = IP to use for SPOOFNAMES
+
 SPOOFNAMES = names to set spoof names to SPOOFIP, sets reverse lookup as well
