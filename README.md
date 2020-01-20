@@ -1,6 +1,8 @@
 # docker-unbound-stub
 Dockerfile and scripts to create an unbound image that can be configured with environment variables on run
 
+Extra configuration is possible my mounting a volume into /etc/unbound/local.conf.d with more .conf files in
+
 Environment  variables used:
 
 CPORT = port unbound listens on inside container (unbound default 53)

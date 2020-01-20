@@ -1,7 +1,14 @@
 FROM alpine:3.11
 LABEL maintainer "Duncan Bellamy <dunk@denkimushi.com>"
 
-RUN apk add --no-cache unbound py-unbound openssl
-COPY entrypoint.sh /usr/local/bin/
-COPY etc/ /etc/unbound/
+EXPOSE 53
+
+RUN apk add --no-cache unbound openssl
+
+WORKDIR /etc/unbound
+COPY etc/ ./
+
+WORKDIR /usr/local/bin
+COPY entrypoint.sh ./
+
 ENTRYPOINT ["entrypoint.sh"]

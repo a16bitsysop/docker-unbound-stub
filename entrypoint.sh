@@ -1,5 +1,18 @@
 #!/bin/sh
 #display environment variables passed with --env
+
+revip()
+{
+[ -z "$2" ] && need=4 || need="$2"
+IFS="." && set -- $1 && IFS=" "
+case "$need" in
+1) REVIP="$1" && PAD="0.0.0" && STIP="$1.$PAD";;
+2) REVIP="$2.$1" && PAD="0.0" && STIP="$1.$2.$PAD";;
+3) REVIP="$3.$2.$1" && PAD="0" && STIP="$1.$2.$3.$PAD";;
+*) REVIP="$4.$3.$2.$1";;
+esac
+}
+
 echo 'starting unbound'
 echo '$CPORT=' $CPORT
 echo '$FORWARD=' $FORWARD
@@ -54,14 +67,11 @@ DOMAIN=$(grep -e search /etc/resolv.conf | cut -d " " -f2)
 [ -z "$STUBPORT" ] && STUBPORT="53"
 case "$STUBMASK" in
 
-        8)      REVIP=$(echo $STUBIP | awk -F. '{print $1}')
-                PRIP=$(echo $STUBIP | awk -F. '{print $1".0.0.0"}')
+        8)      revip $STUBIP 1
                 ;;
-        16|12)     REVIP=$(echo $STUBIP | awk -F. '{print $2"."$1}')
-                PRIP=$(echo $STUBIP | awk -F. '{print $1"."$2".0.0"}')
+        16|12)  revip $STUBIP 2
                 ;;
-        *)      REVIP=$(echo $STUBIP | awk -F. '{print $3"."$2"."$1}')
-                PRIP=$(echo $STUBIP | awk -F. '{print $1"."$2"."$3".0"}')
+        *)      revip $STUBIP 3
                 ;;
         esac
 
@@ -69,7 +79,7 @@ echo "server:
   unblock-lan-zones: yes
   insecure-lan-zones: yes
   do-not-query-localhost: no
-  private-address: \"$PRIP/$STUBMASK\"
+  private-address: \"$STIP/$STUBMASK\"
   private-domain: \"$DOMAIN.\"
   domain-insecure: \"$DOMAIN.\"
   caps-whitelist: \"$DOMAIN.\"
@@ -105,13 +115,13 @@ fi
 
 if [ -n "$SPOOFIP" ] && [ -n "$SPOOFNAMES" ]
 then
- REVSPOOFIP=$(echo $SPOOFIP | awk -F. '{print $4"."$3"."$2"."$1}')
+ revip $SPOOFIP
   if [ -n "$SPOOFNAMES" ]
   then
     echo "server:" > spoof.conf
     for name in ""$SPOOFNAMES""; do
       echo "  local-data: \"$name. IN A $SPOOFIP\"
-  local-data: \"$REVSPOOFIP.in-addr.arpa. IN PTR $name.\"" >> spoof.conf
+  local-data: \"$REVIP.in-addr.arpa. IN PTR $name.\"" >> spoof.conf
     done
   fi
 fi
