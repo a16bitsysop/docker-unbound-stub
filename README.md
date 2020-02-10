@@ -3,6 +3,19 @@ Dockerfile and scripts to create an unbound image that can be configured with en
 
 Extra configuration is possible my mounting a volume into /etc/unbound/local.conf.d with more .conf files in
 
+Default versosity changed to reduce logs, for temporary increase in logging use:
+
+```
+unbound-control verbosity 2
+
+```
+then  to reduce logging again 
+
+```
+unbound-control verbosity 1
+
+```
+
 Environment  variables used:
 
 CPORT = port unbound listens on inside container (unbound default 53)
