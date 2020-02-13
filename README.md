@@ -22,22 +22,18 @@ unbound-control verbosity 1
 Github Repository: [https://github.com/a16bitsysop/docker-unbound-stub](https://github.com/a16bitsysop/docker-unbound-stub)
 
 ## Environment Variables
-| Name       | Desription                                               | Default               |
-| ---------- | -------------------------------------------------------- | --------------------- |
-| CPORT      | port unbound listens on inside container                 | 53                    |
-| FORWARD    | configure unbound to forward to "quad9","google", or any \
-other value uses 1.1.1.1.  When unset  unbound is configured as an \
-authorarive server that queries root servers itself | unset (Authorative) |
-| PREFETCH   | Prefetch frequently requested names to keep fresh if set   | unset (No Prefetch) |
-| STUBIP     | IP of DNS server for local requests eg dnsmasq or mikrotik/openwrt \ 
-router etc, the stub domain is read from resolv.conf. If STUBIP is unset \
-no stub zone is configured | unset |
-| STUBPORT   | port STUBIP is listening on                                | 53                  |
-| STUBMASK   | Bitmask length of local IP range                           | 24                  |
-| NTPIP      | IP of local/prefered NTP server, sets spoof names for windows and osx servers If unset no spoof names are added | unset |
-| NTPNAMES   | extra ntp server names to set spoof names to with NTPIP eg. "ntp.VOIP.com another.remotentp.com" | unset |
-| SPOOFIP    | IP to use for SPOOFNAMES                                   | unset |
-| SPOOFNAMES | names to set spoof names to SPOOFIP, sets reverse lookup as well | unset|
+| Name       | Desription                                                                                                      | Default             |
+| ---------- | --------------------------------------------------------------------------------------------------------------- | ------------------- |
+| CPORT      | port unbound listens on inside container                                                                        | 53                  |
+| FORWARD    | configure unbound to forward to "quad9","google", or any other value uses 1.1.1.1.  When unset  unbound is configured as an authorarive server that queries root servers itself | unset (Authorative) |
+| PREFETCH   | Prefetch frequently requested names to keep fresh if set                                                        | unset (No Prefetch) |
+| STUBIP     | IP of DNS server for local requests eg dnsmasq or mikrotik/openwrt router etc, the stub domain is read from resolv.conf. If STUBIP is unset no stub zone is configured | unset |
+| STUBPORT   | port STUBIP is listening on                                                                                     | 53                  |
+| STUBMASK   | Bitmask length of local IP range                                                                                | 24                  |
+| NTPIP      | IP of local/prefered NTP server, sets spoof names for windows and osx servers If unset no spoof names are added | unset               |
+| NTPNAMES   | extra ntp server names to set spoof names to with NTPIP eg. "ntp.VOIP.com another.remotentp.com"                | unset               |
+| SPOOFIP    | IP to use for SPOOFNAMES                                                                                        | unset               |
+| SPOOFNAMES | names to set spoof names to SPOOFIP, sets reverse lookup as well                                                | unset               |
 
 ## Examples
 ###local fowarding over ssl dns resolver with prefetch and other options
