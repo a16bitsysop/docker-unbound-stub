@@ -1,5 +1,5 @@
 # docker-unbound-stub
-Dockerfile to install [unbound](https://www.nlnetlabs.nl/projects/unbound/about/) as a docker container that can be a forwarding or authorative DNS server, a seperate directory is used for user configuration if required.
+Alpine based Dockerfile to install [unbound](https://www.nlnetlabs.nl/projects/unbound/about/) as a docker container that can be a forwarding or authorative DNS server, a seperate directory is used for user configuration if required.
 
 Default verbosity changed to reduce logs, for temporary increase in logging use:
 
