@@ -11,6 +11,6 @@ COPY entrypoint.sh ./
 
 VOLUME [ "/etc/unbound/local.conf.d" "/etc/unbound/unbound.conf.d" ]
 
-ENTRYPOINT [ "entrypoint.sh" ]
+CMD [ "entrypoint.sh" ]
 
 EXPOSE 53/tcp 53/udp
