@@ -36,13 +36,13 @@ Github Repository: [https://github.com/a16bitsysop/docker-unbound-stub](https://
 | SPOOFNAMES | names to set spoof names to SPOOFIP, sets reverse lookup as well                                                | unset               |
 
 ## Examples
---local fowarding over ssl dns resolver with prefetch and other options
+**local fowarding over ssl dns resolver with prefetch and other options**
 
 ```
 docker container run -p 53:53/udp --env FORWARD=one --env PREFETCH=yes --env STUBIP=192.168.0.1 --env NTPIP=192.168.0.2 --env NTPNAMES="ntp.voip.net ntp.another.com" --env SPOOFIP=192.168.0.2 --env SPOOFNAMES="mail.example.com another.service.com" --restart unless-stopped --name unbound-forward -d a16bitsysop/unbound-stub
 ```
 
---container authorative dns (no ports exposed outside container network)
+**container authorative dns (no ports exposed outside container network)**
 
 ```
 docker container run --net MYNET --env STUBIP=192.168.0.1 --restart unless-stopped --name unbound-root -d a16bitsysop/unbound-stub
