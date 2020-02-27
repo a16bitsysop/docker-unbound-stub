@@ -13,7 +13,7 @@ case "$need" in
 esac
 }
 
-echo 'starting unbound'
+echo "Starting unbound at $(date +'%xx %X')"
 echo '$CPORT=' $CPORT
 echo '$FORWARD=' $FORWARD
 echo '$PREFETCH=' $PREFETCH
