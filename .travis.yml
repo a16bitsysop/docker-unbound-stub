@@ -3,7 +3,7 @@ dist: bionic
 language: minimal
 
 env:
-  - DOCKER_CLI_EXPERIMENTAL=enabled IMAGE_NAME=a16bitsysop/unbound APK=unbound
+  - DOCKER_CLI_EXPERIMENTAL=enabled IMAGE_NAME=a16bitsysop/unbound-stub APK=unbound
 
 before_script:
   - sudo apt-get install manpages-posix
