@@ -31,8 +31,7 @@ echo "server:" > auto.conf
 [ -n "$PREFETCH" ] && echo "  prefetch: yes" >> auto.conf
 [ -n "$CPORT" ] && echo "  port: $CPORT" >> auto.conf
 
-if [ -z "$FORWARD" ]
-then
+if [ -z "$FORWARD" ]; then
 	echo "Configuring authorative DNS"
 	echo "  root-hints: 'root.hints'" >> auto.conf
 
@@ -59,19 +58,18 @@ else
   forward-addr: $DNS2@853" >> auto.conf
 fi
 
-if [ -n "$STUBIP" ]
-then
-DOMAIN=$(grep -e search /etc/resolv.conf | cut -d " " -f2)
-[ -z "$DOMAIN" ] && exit "No search domain in /etc/resolv.conf"
-[ -z "$STUBMASK" ] && STUBMASK="24"
-[ -z "$STUBPORT" ] && STUBPORT="53"
-case "$STUBMASK" in
+if [ -n "$STUBIP" ]; then
+	DOMAIN=$(grep -e search /etc/resolv.conf | cut -d " " -f2)
+	[ -z "$DOMAIN" ] && exit "No search domain in /etc/resolv.conf"
+	[ -z "$STUBMASK" ] && STUBMASK="24"
+	[ -z "$STUBPORT" ] && STUBPORT="53"
+	case "$STUBMASK" in
 
-        8)      revip $STUBIP 1
+        	8)      revip $STUBIP 1
                 ;;
-        16|12)  revip $STUBIP 2
+        	16|12)  revip $STUBIP 2
                 ;;
-        *)      revip $STUBIP 3
+        	*)      revip $STUBIP 3
                 ;;
         esac
 
@@ -97,24 +95,21 @@ stub-zone:
 " > stub.conf
 fi
 
-if [ -n "$NTPIP" ]
-then
+if [ -n "$NTPIP" ]; then
   echo "server:
   local-data: \"time.windows.com. IN A $NTPIP\"
   local-data: \"time.apple.com. IN A $NTPIP\"
   local-data: \"time.euro.apple.com. IN A $NTPIP\"
   local-data: \"time.asia.apple.com. IN A $NTPIP\"
 " > ntp-spoof.conf
-  if [ -n "$NTPNAMES" ]
-  then
+  if [ -n "$NTPNAMES" ]; then
     for name in ""$NTPNAMES""; do
       echo "local-data: \"$name. IN A $NTPIP\"" >> ntp-spoof.conf
     done
   fi
 fi
 
-if [ -n "$SPOOFIP" ] && [ -n "$SPOOFNAMES" ]
-then
+if [ -n "$SPOOFIP" ] && [ -n "$SPOOFNAMES" ]; then
  revip $SPOOFIP
   if [ -n "$SPOOFNAMES" ]
   then
