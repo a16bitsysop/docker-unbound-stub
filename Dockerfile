@@ -3,8 +3,11 @@ LABEL maintainer "Duncan Bellamy <dunk@denkimushi.com>"
 
 RUN apk add --no-cache unbound openssl
 
+WORKDIR /etc/unbound/unbound.conf.d
+WORKDIR /etc/unbound/local.conf.d
+
 WORKDIR /etc/unbound
-COPY conf/ ./
+COPY conf/unbound.conf .
 
 WORKDIR /usr/local/bin
 COPY entrypoint.sh ./

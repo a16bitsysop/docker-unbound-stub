@@ -1,2 +1,0 @@
-#placeholder for local.conf.d conf files are read from here as well 
-#so can be mounted as a volume 

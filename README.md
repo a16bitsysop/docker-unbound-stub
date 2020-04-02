@@ -25,7 +25,7 @@ Github Repository: [https://github.com/a16bitsysop/docker-unbound-stub](https://
 | Name       | Desription                                                                                                      | Default             |
 | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------------- |
 | CPORT      | port unbound listens on inside container                                                                        | 53                  |
-| FORWARD    | configure unbound to forward to "quad9","google", or any other value uses 1.1.1.1.  When unset  unbound is configured as an authorarive server that queries root servers itself | unset (Authorative) |
+| FORWARD    | configure unbound to forward to "quad9","google", or for clouldflare "1mal" is malware blocking, "1fam" is malware and adult blocking, any other value uses 1.1.1.1.  When unset  unbound is configured as an authorarive server that queries root servers itself | unset (Authorative) |
 | PREFETCH   | Prefetch frequently requested names to keep fresh if set                                                        | unset (No Prefetch) |
 | STUBIP     | IP of DNS server for local requests eg dnsmasq or mikrotik/openwrt router etc, the stub domain is read from resolv.conf. If STUBIP is unset no stub zone is configured | unset |
 | STUBPORT   | port STUBIP is listening on                                                                                     | 53                  |
