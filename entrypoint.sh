@@ -33,7 +33,8 @@ echo "server:" > auto.conf
 
 if [ -z "$FORWARD" ]; then
 	echo "Configuring authorative DNS"
-	echo "  root-hints: 'root.hints'" >> auto.conf
+	echo "#Using builtin root.hints" >> auto.conf
+	echo "#  root-hints: \"root.hints\"" >> auto.conf
 
 else
 	echo "Configuring DNS forwarding to $FORWARD"
