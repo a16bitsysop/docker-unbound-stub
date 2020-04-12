@@ -12,7 +12,7 @@ COPY conf/unbound.conf .
 WORKDIR /usr/local/bin
 COPY entrypoint.sh ./
 
-VOLUME [ "/etc/unbound/local.conf.d" ]
+VOLUME "/etc/unbound/local.conf.d"
 
 CMD [ "entrypoint.sh" ]
 
