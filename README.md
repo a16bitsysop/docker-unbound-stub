@@ -1,6 +1,10 @@
 # docker-unbound-stub
 Alpine based Dockerfile to install [unbound](https://www.nlnetlabs.nl/projects/unbound/about/) as a docker container that can be a forwarding or authorative DNS server, a seperate directory is used for user configuration if required.
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
+[![Docker Stars](https://img.shields.io/docker/stars/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
+[![](https://images.microbadger.com/badges/version/a16bitsysop/unbound-stub.svg)](https://microbadger.com/images/a16bitsysop/unbound-stub "Get your own version badge on microbadger.com")
+
 Default verbosity changed to reduce logs, for temporary increase in logging use:
 
 ```
@@ -13,10 +17,6 @@ then  to reduce logging again
 unbound-control verbosity 1
 
 ```
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
-[![Docker Stars](https://img.shields.io/docker/stars/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
-[![](https://images.microbadger.com/badges/version/a16bitsysop/unbound-stub.svg)](https://microbadger.com/images/a16bitsysop/unbound-stub "Get your own version badge on microbadger.com")
 
 ## Github
 Github Repository: [https://github.com/a16bitsysop/docker-unbound-stub](https://github.com/a16bitsysop/docker-unbound-stub)
