@@ -1,7 +1,7 @@
 FROM alpine:3.11
 LABEL maintainer "Duncan Bellamy <dunk@denkimushi.com>"
 
-RUN apk add --no-cache unbound openssl
+RUN apk add --no-cache unbound openssl drill
 
 WORKDIR /etc/unbound/unbound.conf.d
 WORKDIR /etc/unbound/local.conf.d
