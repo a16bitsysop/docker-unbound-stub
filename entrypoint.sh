@@ -13,7 +13,6 @@ case "$need" in
 esac
 }
 
-echo "Starting unbound at $(date +'%x %X')"
 echo '$CPORT=' $CPORT
 echo '$FORWARD=' $FORWARD
 echo '$PREFETCH=' $PREFETCH
@@ -24,7 +23,24 @@ echo '$NTPIP=' $NTPIP
 echo '$NTPNAMES=' $NTPNAMES
 echo '$SPOOFIP=' $SPOOFIP
 echo '$SPOOFNAMES=' $SPOOFNAMES
+echo '$TIMEZONE=' $TIMEZONE
 echo
+
+if [ -n "$TIMEZONE" ]
+then
+  apk add --no-cache tzdata
+  if [ -f /usr/share/zoneinfo/"$TIMEZONE" ]
+  then
+    echo "Setting timezone to $TIMEZONE"
+    cp /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+    echo "$TIMEZONE" > /etc/timezone
+  else
+    echo "$TIMEZONE does not exist"
+  fi
+  apk del tzdata
+fi
+
+echo "Starting unbound at $(date +'%x %X')"
 cd /etc/unbound/unbound.conf.d
 
 echo "server:" > auto.conf

@@ -34,6 +34,7 @@ Github Repository: [https://github.com/a16bitsysop/docker-unbound-stub](https://
 | NTPNAMES   | extra ntp server names to set spoof names to with NTPIP eg. "ntp.VOIP.com another.remotentp.com"                | unset               |
 | SPOOFIP    | IP to use for SPOOFNAMES                                                                                        | unset               |
 | SPOOFNAMES | names to set spoof names to SPOOFIP, sets reverse lookup as well                                                | unset               |
+| TIMEZONE   | Timezone to use inside the container, eg Europe/London                                                          | unset               |
 
 ## Examples
 **local fowarding over ssl dns resolver with prefetch and other options**
