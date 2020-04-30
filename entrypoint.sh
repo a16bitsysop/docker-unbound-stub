@@ -28,7 +28,6 @@ echo
 
 if [ -n "$TIMEZONE" ]
 then
-  apk add --no-cache tzdata
   if [ -f /usr/share/zoneinfo/"$TIMEZONE" ]
   then
     echo "Setting timezone to $TIMEZONE"
@@ -37,7 +36,6 @@ then
   else
     echo "$TIMEZONE does not exist"
   fi
-  apk del tzdata
 fi
 
 echo "Starting unbound at $(date +'%x %X')"
