@@ -23,6 +23,7 @@ echo '$NTPIP=' $NTPIP
 echo '$NTPNAMES=' $NTPNAMES
 echo '$SPOOFIP=' $SPOOFIP
 echo '$SPOOFNAMES=' $SPOOFNAMES
+echo '$LOGIDENT=' $LOGIDENT
 echo '$TIMEZONE=' $TIMEZONE
 echo
 
@@ -42,6 +43,7 @@ echo "Starting unbound at $(date +'%x %X')"
 cd /etc/unbound/unbound.conf.d
 
 echo "server:" > auto.conf
+[ -n "$LOGIDENT" ] && echo "  log-identity: $LOGIDENT" >> auto.conf
 [ -n "$PREFETCH" ] && echo "  prefetch: yes" >> auto.conf
 [ -n "$CPORT" ] && echo "  port: $CPORT" >> auto.conf
 
