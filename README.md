@@ -4,6 +4,7 @@ Alpine based Dockerfile to install [unbound](https://www.nlnetlabs.nl/projects/u
 [![Docker Pulls](https://img.shields.io/docker/pulls/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
 [![Docker Stars](https://img.shields.io/docker/stars/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
 [![](https://images.microbadger.com/badges/version/a16bitsysop/unbound-stub.svg)](https://microbadger.com/images/a16bitsysop/unbound-stub "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/commit/a16bitsysop/unbound-stub.svg)](https://microbadger.com/images/a16bitsysop/unbound-stub "Get your own commit badge on microbadger.com")
 
 Default verbosity changed to reduce logs, for temporary increase in logging use:
 
