@@ -10,7 +10,7 @@ WORKDIR /etc/unbound
 COPY conf/unbound.conf .
 
 WORKDIR /usr/local/bin
-COPY entrypoint.sh ./
+COPY travis-helpers/set-timezone.sh entrypoint.sh ./
 
 CMD [ "entrypoint.sh" ]
 VOLUME /etc/unbound/local.conf.d

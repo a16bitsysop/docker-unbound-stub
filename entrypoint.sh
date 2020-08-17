@@ -27,19 +27,9 @@ echo '$LOGIDENT=' $LOGIDENT
 echo '$TIMEZONE=' $TIMEZONE
 echo
 
-if [ -n "$TIMEZONE" ]
-then
-  if [ -f /usr/share/zoneinfo/"$TIMEZONE" ]
-  then
-    echo "Setting timezone to $TIMEZONE"
-    cp /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
-    echo "$TIMEZONE" > /etc/timezone
-  else
-    echo "$TIMEZONE does not exist"
-  fi
-fi
+NME=unbound
+set-timezone.sh "$NME"
 
-echo "Starting unbound at $(date +'%x %X')"
 cd /etc/unbound/unbound.conf.d
 
 echo "server:" > auto.conf
