@@ -141,11 +141,11 @@ then
   fi
 fi
 
-cd /etc/unbound
+cd /var/lib/unbound
 unbound-anchor -a root.key
 if [ ! -f unbound_server.key ] || [ ! -f unbound_server.pem ]
 then
-	unbound-control-setup
+	unbound-control-setup -d ./
 fi
 
 chown -R unbound:unbound /etc/unbound

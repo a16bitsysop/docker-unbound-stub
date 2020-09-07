@@ -1,7 +1,8 @@
 FROM alpine:3.12
 LABEL maintainer "Duncan Bellamy <dunk@denkimushi.com>"
 
-RUN apk add --no-cache unbound openssl drill tzdata
+RUN apk add --no-cache unbound openssl drill tzdata \
+&& mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound
 
 WORKDIR /etc/unbound/unbound.conf.d
 WORKDIR /etc/unbound/local.conf.d
