@@ -16,3 +16,5 @@ COPY travis-helpers/set-timezone.sh entrypoint.sh ./
 CMD [ "entrypoint.sh" ]
 VOLUME /etc/unbound/local.conf.d
 EXPOSE 53/tcp 53/udp
+
+HEALTHCHECK CMD unbound-control status || exit 1 

@@ -24,7 +24,6 @@ echo '$NTPNAMES=' $NTPNAMES
 echo '$SPOOFIP=' $SPOOFIP
 echo '$SPOOFNAMES=' $SPOOFNAMES
 echo '$LOGIDENT=' $LOGIDENT
-echo '$TIMEZONE=' $TIMEZONE
 echo
 
 NME=unbound
@@ -148,6 +147,6 @@ then
 	unbound-control-setup -d ./
 fi
 
-chown -R unbound:unbound /etc/unbound
+#chown -R unbound:unbound /etc/unbound
 
 exec unbound -d
