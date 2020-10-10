@@ -4,7 +4,7 @@
 revip()
 {
 [ -z "$2" ] && need=4 || need="$2"
-IFS="." && set -- $1 && IFS=" "
+IFS="." && set -- ${1} && IFS=" "
 case "$need" in
 1) REVIP="$1" && PAD="0.0.0" && STIP="$1.$PAD";;
 2) REVIP="$2.$1" && PAD="0.0" && STIP="$1.$2.$PAD";;
@@ -29,7 +29,7 @@ echo
 NME=unbound
 set-timezone.sh "$NME"
 
-cd /etc/unbound/unbound.conf.d
+cd /etc/unbound/unbound.conf.d || exit 1
 
 echo "server:" > auto.conf
 [ -n "$LOGIDENT" ] && echo "  log-identity: $LOGIDENT" >> auto.conf
@@ -74,16 +74,16 @@ fi
 if [ -n "$STUBIP" ]
 then
 	DOMAIN=$(grep -e search /etc/resolv.conf | cut -d " " -f2)
-	[ -z "$DOMAIN" ] && exit "No search domain in /etc/resolv.conf"
+	[ -z "$DOMAIN" ] && echo "No search domain in /etc/resolv.conf" && exit 1
 	[ -z "$STUBMASK" ] && STUBMASK="24"
 	[ -z "$STUBPORT" ] && STUBPORT="53"
 	case "$STUBMASK" in
 
-        	8)      revip $STUBIP 1
+        	8)      revip "$STUBIP" 1
                 ;;
-        	16|12)  revip $STUBIP 2
+        	16|12)  revip "$STUBIP" 2
                 ;;
-        	*)      revip $STUBIP 3
+        	*)      revip "$STUBIP" 3
                 ;;
         esac
 
@@ -119,7 +119,7 @@ then
 " > ntp-spoof.conf
   if [ -n "$NTPNAMES" ]
   then
-    for name in ""$NTPNAMES""
+    for name in ${NTPNAMES}
     do
       echo "local-data: \"$name. IN A $NTPIP\"" >> ntp-spoof.conf
     done
@@ -132,7 +132,7 @@ then
   if [ -n "$SPOOFNAMES" ]
   then
     echo "server:" > spoof.conf
-    for name in ""$SPOOFNAMES""
+    for name in ${SPOOFNAMES}
     do
       echo "  local-data: \"$name. IN A $SPOOFIP\"
   local-data: \"$REVIP.in-addr.arpa. IN PTR $name.\"" >> spoof.conf
@@ -140,7 +140,7 @@ then
   fi
 fi
 
-cd /var/lib/unbound
+cd /var/lib/unbound || exit 1
 unbound-anchor -a root.key
 if [ ! -f unbound_server.key ] || [ ! -f unbound_server.pem ]
 then
