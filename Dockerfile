@@ -12,10 +12,10 @@ WORKDIR /etc/unbound
 COPY conf/unbound.conf .
 
 WORKDIR /usr/local/bin
-COPY travis-helpers/set-timezone.sh entrypoint.sh dock-health.sh ./
+COPY travis-helpers/set-timezone.sh entrypoint.sh ./
 
 CMD [ "entrypoint.sh" ]
 VOLUME /etc/unbound/local.conf.d
 EXPOSE 53/tcp 53/udp
 
-HEALTHCHECK CMD dock-health.sh
+HEALTHCHECK CMD unbound-control status || exit 1
