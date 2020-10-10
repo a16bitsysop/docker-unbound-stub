@@ -13,17 +13,17 @@ case "$need" in
 esac
 }
 
-echo '$CPORT=' $CPORT
-echo '$FORWARD=' $FORWARD
-echo '$PREFETCH=' $PREFETCH
-echo '$STUBIP=' $STUBIP
-echo '$STUBPORT=' $STUBPORT
-echo '$STUBMASK=' $STUBMASK
-echo '$NTPIP=' $NTPIP
-echo '$NTPNAMES=' $NTPNAMES
-echo '$SPOOFIP=' $SPOOFIP
-echo '$SPOOFNAMES=' $SPOOFNAMES
-echo '$LOGIDENT=' $LOGIDENT
+echo "\$CPORT= $CPORT"
+echo "\$FORWARD= $FORWARD"
+echo "\$PREFETCH= $PREFETCH"
+echo "\$STUBIP= $STUBIP"
+echo "\$STUBPORT= $STUBPORT"
+echo "\$STUBMASK= $STUBMASK"
+echo "\$NTPIP= $NTPIP"
+echo "\$NTPNAMES= $NTPNAMES"
+echo "\$SPOOFIP= $SPOOFIP"
+echo "\$SPOOFNAMES= $SPOOFNAMES"
+echo "\$LOGIDENT= $LOGIDENT"
 echo
 
 NME=unbound
