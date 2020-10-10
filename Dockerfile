@@ -1,6 +1,7 @@
 FROM alpine:3.12
 LABEL maintainer "Duncan Bellamy <dunk@denkimushi.com>"
 
+# hadolint ignore=DL3018
 RUN apk add --no-cache unbound openssl drill tzdata \
 && mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound
 
