@@ -8,13 +8,13 @@ Alpine based Dockerfile to install [unbound](https://www.nlnetlabs.nl/projects/u
 
 Default verbosity changed to reduce logs, for temporary increase in logging use:
 
-```
+```bash
 unbound-control verbosity 2
 
-```
+```bash
 then  to reduce logging again
 
-```
+```bash
 unbound-control verbosity 1
 
 ```
@@ -41,12 +41,12 @@ Github Repository: [https://github.com/a16bitsysop/docker-unbound-stub](https://
 ## Examples
 **local fowarding over ssl dns resolver with prefetch and other options**
 
-```
+```bash
 docker container run -p 53:53/udp --env FORWARD=one --env PREFETCH=yes --env STUBIP=192.168.0.1 --env NTPIP=192.168.0.2 --env NTPNAMES="ntp.voip.net ntp.another.com" --env SPOOFIP=192.168.0.2 --env SPOOFNAMES="mail.example.com another.service.com" --restart unless-stopped --name unbound-forward -d a16bitsysop/unbound-stub
 ```
 
 **container authorative dns (no ports exposed outside container network)**
 
-```
+```bash
 docker container run --net MYNET --env STUBIP=192.168.0.1 --restart unless-stopped --name unbound-root -d a16bitsysop/unbound-stub
 ```
