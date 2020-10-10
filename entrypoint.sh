@@ -4,12 +4,16 @@
 revip()
 {
 [ -z "$2" ] && need=4 || need="$2"
-IFS="." && set -- ${1} && IFS=" "
+a="$(echo "$1" | cut -d. -f1)"
+b="$(echo "$1" | cut -d. -f2)"
+c="$(echo "$1" | cut -d. -f3)"
+d="$(echo "$1" | cut -d. -f4)"
+
 case "$need" in
-1) REVIP="$1" && PAD="0.0.0" && STIP="$1.$PAD";;
-2) REVIP="$2.$1" && PAD="0.0" && STIP="$1.$2.$PAD";;
-3) REVIP="$3.$2.$1" && PAD="0" && STIP="$1.$2.$3.$PAD";;
-*) REVIP="$4.$3.$2.$1";;
+1) REVIP="$a" && PAD="0.0.0" && STIP="$a.$PAD";;
+2) REVIP="$b.$a" && PAD="0.0" && STIP="$a.$b.$PAD";;
+3) REVIP="$c.$b.$a" && PAD="0" && STIP="$a.$b.$c.$PAD";;
+*) REVIP="$d.$c.$b.$a";;
 esac
 }
 
@@ -128,7 +132,7 @@ fi
 
 if [ -n "$SPOOFIP" ] && [ -n "$SPOOFNAMES" ]
 then
- revip $SPOOFIP
+ revip "$SPOOFIP"
   if [ -n "$SPOOFNAMES" ]
   then
     echo "server:" > spoof.conf
