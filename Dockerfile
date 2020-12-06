@@ -2,7 +2,8 @@ FROM alpine:3.12
 LABEL maintainer="Duncan Bellamy <dunk@denkimushi.com>"
 
 # hadolint ignore=DL3018
-RUN apk add --no-cache unbound openssl drill tzdata \
+RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories \
+&& apk add --no-cache unbound openssl drill tzdata \
 && mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound
 
 WORKDIR /etc/unbound/unbound.conf.d
