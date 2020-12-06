@@ -14,7 +14,7 @@ COPY --from=builder /tmp/packages/* /tmp/packages/
 RUN cp /etc/apk/repositories /etc/apk/repositories.orig \
 && echo '/tmp/packages' >> /etc/apk/repositories \
 && chown -R root:root /tmp/packages \
-&& apk add --no-cache unbound openssl drill tzdata \
+&& apk add --no-cache --allow-untrusted unbound openssl drill tzdata \
 && mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound \
 && rm -rf /tmp/* \
 && mv /etc/apk/repositories.orig /etc/apk/repositories
