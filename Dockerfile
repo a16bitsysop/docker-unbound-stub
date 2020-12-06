@@ -1,5 +1,14 @@
+FROM alpine:3.12 as builder
+
+WORKDIR /tmp
+COPY travis-helpers/build-apk-native.sh travis-helpers/pull-apk-source.sh /usr/local/bin/
+
+RUN build-apk-native.sh main/unbound
+
 FROM alpine:3.12
 LABEL maintainer="Duncan Bellamy <dunk@denkimushi.com>"
+
+COPY --from=builder /tmp/packages/* /tmp/packages/
 
 # hadolint ignore=DL3018
 #RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories
