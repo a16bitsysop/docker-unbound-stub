@@ -11,8 +11,13 @@ LABEL maintainer="Duncan Bellamy <dunk@denkimushi.com>"
 COPY --from=builder /tmp/packages/* /tmp/packages/
 
 # hadolint ignore=DL3018
-RUN apk add --no-cache unbound openssl drill tzdata \
-&& mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound
+RUN cp /etc/apk/repositories /etc/apk/repositories.orig \
+&& echo '/tmp/packages' >> /etc/apk/repositories \
+&& chown -R root:root /tmp/packages \
+&& apk add --no-cache --allow-untrusted unbound openssl drill tzdata \
+&& mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound \
+&& rm -rf /tmp/* \
+&& mv /etc/apk/repositories.orig /etc/apk/repositories
 
 WORKDIR /etc/unbound/unbound.conf.d
 WORKDIR /etc/unbound/local.conf.d
