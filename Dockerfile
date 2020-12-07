@@ -1,23 +1,10 @@
-FROM alpine:3.12 as builder
-
-WORKDIR /tmp
-COPY travis-helpers/build-apk-native.sh travis-helpers/pull-apk-source.sh /usr/local/bin/
-
-RUN build-apk-native.sh main/unbound
-
 FROM alpine:3.12
 LABEL maintainer="Duncan Bellamy <dunk@denkimushi.com>"
 
-COPY --from=builder /tmp/packages/* /tmp/packages/
-
 # hadolint ignore=DL3018
-RUN cp /etc/apk/repositories /etc/apk/repositories.orig \
-&& echo '/tmp/packages' >> /etc/apk/repositories \
-&& chown -R root:root /tmp/packages \
-&& apk add --no-cache --allow-untrusted unbound openssl drill tzdata \
-&& mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound \
-&& rm -rf /tmp/* \
-&& mv /etc/apk/repositories.orig /etc/apk/repositories
+RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories \
+&& apk add --no-cache --upgrade unbound openssl drill tzdata \
+&& mkdir -p /var/lib/unbound && chown unbound:unbound /var/lib/unbound
 
 WORKDIR /etc/unbound/unbound.conf.d
 WORKDIR /etc/unbound/local.conf.d
