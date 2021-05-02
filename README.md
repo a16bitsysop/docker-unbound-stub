@@ -1,10 +1,10 @@
 # docker-unbound-stub
 Alpine based Dockerfile to install [unbound](https://www.nlnetlabs.nl/projects/unbound/about/) as a docker container that can be a forwarding or authorative DNS server, a seperate directory is used for user configuration if required.
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
-[![Docker Stars](https://img.shields.io/docker/stars/a16bitsysop/unbound-stub.svg?style=flat-square)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
-[![Version](https://images.microbadger.com/badges/version/a16bitsysop/unbound-stub.svg)](https://microbadger.com/images/a16bitsysop/unbound-stub "Get your own version badge on microbadger.com")
-[![Commit](https://images.microbadger.com/badges/commit/a16bitsysop/unbound-stub.svg)](https://microbadger.com/images/a16bitsysop/unbound-stub "Get your own commit badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/a16bitsysop/unbound-stub.svg?style=plastic)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
+[![Docker Stars](https://img.shields.io/docker/stars/a16bitsysop/unbound-stub.svg?style=plastic)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
+[![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/a16bitsysop/unbound-stub/latest?style=plastic)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
+[![Github SHA](https://img.shields.io/badge/dynamic/json?style=plastic&color=orange&label=Github%20SHA&query=object.sha&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fa16bitsysop%2Fdocker-unbound-stub%2Fgit%2Frefs%2Fheads%2Fmain)](https://github.com/a16bitsysop/docker-unbound-stub)
 
 Default verbosity changed to reduce logs, for temporary increase in logging use:
 
