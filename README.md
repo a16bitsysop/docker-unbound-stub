@@ -1,6 +1,8 @@
 # docker-unbound-stub
 Alpine based Dockerfile to install [unbound](https://www.nlnetlabs.nl/projects/unbound/about/) as a docker container that can be a forwarding or authorative DNS server, a seperate directory is used for user configuration if required.
 
+This repository has moved to: https://gitlab.com/container-email/unbound-stub
+
 [![Docker Pulls](https://img.shields.io/docker/pulls/a16bitsysop/unbound-stub.svg?style=plastic)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
 [![Docker Stars](https://img.shields.io/docker/stars/a16bitsysop/unbound-stub.svg?style=plastic)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
 [![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/a16bitsysop/unbound-stub/latest?style=plastic)](https://hub.docker.com/r/a16bitsysop/unbound-stub/)
